@@ -39,7 +39,7 @@
 
 export CC = gcc
 export CXX = g++
-export NVCC = nvcc
+export NVCC = NONE
 
 # whether compile with options for MXNet developer
 DEV = 0
@@ -172,7 +172,7 @@ USE_JEMALLOC = 1
 #----------------------------
 
 # path to folders containing projects specific operators that you don't want to put in src/operators
-EXTRA_OPERATORS =
+EXTRA_OPERATORS = extra-op
 
 #----------------------------
 # other features
