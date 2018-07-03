@@ -35,7 +35,7 @@ class ObjectDetectorExampleSuite extends FunSuite with BeforeAndAfterAll {
     logger.info("tempDirPath: %s".format(tempDirPath))
 
     val modelBase = "https://s3.amazonaws.com/model-server/models/resnet50_ssd/"
-    val synsetBase = "https://raw.githubusercontent.com/awslabs/mxnet-model-server/master/examples/"
+    val synsetBase = "https://s3.amazonaws.com/model-server/models/resnet50_ssd/"
     val imageBase = "https://s3.amazonaws.com/model-server/inputs/"
 
     Process("wget " + modelBase + "resnet50_ssd_model-symbol.json " + "-P " +
@@ -46,7 +46,7 @@ class ObjectDetectorExampleSuite extends FunSuite with BeforeAndAfterAll {
       "-P " + tempDirPath + "/resnetssd/ -q") !
 
 
-    Process("wget  " + synsetBase + "ssd/synset.txt " + "-P" +
+    Process("wget  " + synsetBase + "synset.txt " + "-P" +
       tempDirPath + "/resnetssd/ -q") !
 
     Process("wget " +
@@ -68,14 +68,14 @@ class ObjectDetectorExampleSuite extends FunSuite with BeforeAndAfterAll {
     val output = SSDClassifierExample.runObjectDetectionSingle(modelDirPath + "resnet50_ssd_model",
       inputImagePath, context)
 
-    assert(output(0)(0)._1 === "car")
-
     val outputList = SSDClassifierExample.runObjectDetectionBatch(
       modelDirPath + "resnet50_ssd_model",
       inputImageDir, context)
 
+    Process("rm -rf " + modelDirPath + " " + inputImageDir) !
+
+    assert(output(0)(0)._1 === "car")
     assert(output(0)(0)._1 === "car")
 
-    Process("rm -rf " + modelDirPath + " " + inputImageDir) !
   }
 }

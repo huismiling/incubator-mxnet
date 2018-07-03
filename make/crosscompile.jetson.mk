@@ -57,10 +57,10 @@ DEBUG = 0
 USE_SIGNAL_HANDLER = 1
 
 # the additional link flags you want to add
-ADD_LDFLAGS =
+ADD_LDFLAGS = -L${CROSS_ROOT}/lib
 
 # the additional compile flags you want to add
-ADD_CFLAGS =
+ADD_CFLAGS = -I${CROSS_ROOT}/include
 
 #---------------------------------------------
 # matrix computation libraries for CPU/GPU
@@ -132,7 +132,10 @@ endif
 # Settings for power and arm arch
 #----------------------------
 USE_SSE=0
+
+# Turn off F16C instruction set support
 USE_F16C=0
+
 #----------------------------
 # distributed computing
 #----------------------------
