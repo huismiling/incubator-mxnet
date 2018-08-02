@@ -67,18 +67,18 @@ ADD_CFLAGS =
 #---------------------------------------------
 
 # whether use CUDA during compile
-USE_CUDA = 0
+USE_CUDA = 1
 
 # add the path to CUDA library to link and compile flag
 # if you have already add them to environment variable, leave it as NONE
-# USE_CUDA_PATH = /usr/local/cuda
-USE_CUDA_PATH = NONE
+USE_CUDA_PATH = /usr/local/cuda
+# USE_CUDA_PATH = NONE
 
 # whether to enable CUDA runtime compilation
 ENABLE_CUDA_RTC = 1
 
 # whether use CuDNN R3 library
-USE_CUDNN = 0
+USE_CUDNN = 1
 
 #whether to use NCCL library
 USE_NCCL = 0
@@ -187,7 +187,7 @@ USE_JEMALLOC = 1
 #----------------------------
 
 # path to folders containing projects specific operators that you don't want to put in src/operators
-EXTRA_OPERATORS =
+EXTRA_OPERATORS = extra-op
 
 #----------------------------
 # other features
